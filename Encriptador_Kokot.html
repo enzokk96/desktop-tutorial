@@ -1,0 +1,143 @@
+<!DOCUTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8" />
+        <title>
+            Proyecto Enzo
+        </title>
+        <link rel="stylesheet" type="text/css" href="index.css" />
+    </head>
+
+
+    <script>
+
+
+    function limpiar() {
+
+        document.getElementById('oculto1').style.display = 'block';
+        document.getElementById("texto").value = "";
+        document.getElementById("myId").innerHTML="";
+    }
+
+    function copiar() {
+
+        const textoCopiado = document.getElementById("myId").innerHTML
+        navigator.clipboard.writeText(textoCopiado)
+
+            .then(() => {
+            alert("texto copiado")
+        })
+            .catch(err => {
+            alert('error al copiar', err);
+        })
+    }
+
+    function encriptar() {
+
+        document.getElementById('oculto1').style.display = 'none'
+        const valtext= document.getElementById("texto").value;
+        let arr = valtext.split('');
+        console.log(arr);
+        let nuevotexto = ""
+
+        for (let index = 0; index < arr.length; index++) {
+            const letra = arr[index];
+
+            switch (letra) {
+                case "a":
+                nuevotexto = nuevotexto + "ai"
+                    break;
+                    case "e":
+                nuevotexto = nuevotexto + "enter"
+                    break;
+                    case "i":
+                nuevotexto = nuevotexto + "imes"
+                    break;
+                    case "o":
+                nuevotexto = nuevotexto + "ober"
+                    break;
+                    case "u":
+                nuevotexto = nuevotexto + "ufat"
+                    break;
+                default:
+                nuevotexto = nuevotexto + letra
+                    break;
+            }
+
+
+        }
+
+        document.getElementById("myId").innerHTML= nuevotexto ;
+
+    }
+
+
+    function desencriptar() {
+
+        document.getElementById('oculto1').style.display = 'none';
+        let textDesencriptado =  document.getElementById("texto").value;
+
+        const regexA = /ai/g;
+        textDesencriptado = textDesencriptado.replace(regexA, 'a');
+
+        const regexE = /enter/g;
+        textDesencriptado = textDesencriptado.replace(regexE, 'e');
+
+        const regexI = /imes/g;
+        textDesencriptado = textDesencriptado.replace(regexI, 'i');
+
+        const regexO = /ober/g;
+        textDesencriptado = textDesencriptado.replace(regexO, 'o');
+
+        const regexU = /ufat/g;
+        textDesencriptado = textDesencriptado.replace(regexU, 'u');
+
+        document.getElementById("myId").innerHTML= textDesencriptado;
+    }
+
+
+
+    </script>
+
+    </div>
+        <body>
+            <div class="encriptador">
+                <h1>Encripta o Desencripta tu palabra</h1>
+
+                <div class="col1">
+
+                    <textarea autofocus rows="8" class="IngreseTexto" placeholder="Ingrese el texto aqui" id="texto" required ></textarea>
+                    <div class="div1">
+                        <img src="Vector.png" alt="imagen">
+                        <span class="imagen">
+                            Solo letras minúsculas y sin acentos
+
+                        </span>
+                    </div>
+                    <div class="frame3">
+
+                        <button id="boton1" type="submit" class="boton-encriptar" onclick="encriptar()">ENCRIPTAR</button>
+                        <button id="boton2" type="button" class="boton-desencriptar" onclick="desencriptar()">DESENCRIPTAR</button>
+                        <button onclick="limpiar()" class="boton-limpiar">Limpiar</button>
+                    </div>
+                </div>
+
+                <div class="col2">
+                    <div class="rectangulo1">
+                        <div id="myId"></div>
+                        <div class="contenido" id="oculto1" >
+                            <img src="Muñeco.png" alt="imagen2" class="observador">
+                            <div class="frame5">
+                                <h2>Ningun mensaje fue ingresado</h2>
+                                <p>Ingresa el texto que desees encriptar o desencriptar.</p>
+                            </div>
+
+                        </div>
+                </div>
+                <button onclick="copiar()" class="boton-copiar">COPIAR</button>
+                </div>
+            </div>
+
+
+        </body>
+</html>
